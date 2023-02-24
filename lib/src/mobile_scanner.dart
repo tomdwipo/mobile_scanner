@@ -144,9 +144,14 @@ class _MobileScannerState extends State<MobileScanner>
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
     WidgetsBinding.instance.addObserver(this);
     _controller = widget.controller ?? MobileScannerController();
     _startScanner();
+=======
+    WidgetsBinding.instance!.addObserver(this);
+    controller = widget.controller ?? MobileScannerController();
+>>>>>>> d76b7a4b42e64003b8ff6c4f2747ba6b852eb700
   }
 
   @override
@@ -279,11 +284,8 @@ class _MobileScannerState extends State<MobileScanner>
 
   @override
   void dispose() {
-    _controller.updateScanWindow(null);
-    WidgetsBinding.instance.removeObserver(this);
-    _barcodesSubscription?.cancel();
-    _barcodesSubscription = null;
-    _controller.dispose();
+    controller.dispose();
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 }
