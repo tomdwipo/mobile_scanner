@@ -8,8 +8,13 @@
 import AVFoundation
 import Flutter
 import Foundation
-import MLKitBarcodeScanning
+//import MLKitBarcodeScanning
 
+public class Barcode {
+    public init(){
+        
+    }
+}
 extension Error {
     func throwNative(_ result: FlutterResult) {
         let error = FlutterError(code: localizedDescription, message: nil, details: nil)
@@ -67,12 +72,13 @@ extension UIDeviceOrientation {
     }
 }
 
-extension Barcode {
-    var data: [String: Any?] {
-        let corners = cornerPoints?.map({$0.cgPointValue.data})
-        return ["corners": corners, "format": format.rawValue, "rawBytes": rawData, "rawValue": rawValue, "type": valueType.rawValue, "calendarEvent": calendarEvent?.data, "contactInfo": contactInfo?.data, "driverLicense": driverLicense?.data, "email": email?.data, "geoPoint": geoPoint?.data, "phone": phone?.data, "sms": sms?.data, "url": url?.data, "wifi": wifi?.data]
-    }
-}
+//extension Barcode {
+//    var data: [String: Any?] {
+////        let corners = cornerPoints?.map({$0.cgPointValue.data})
+//        return ["corners": 0]
+////        return ["corners": corners, "format": format.rawValue, "rawBytes": rawData, "rawValue": rawValue, "type": valueType.rawValue, "calendarEvent": calendarEvent?.data, "contactInfo": contactInfo?.data, "driverLicense": driverLicense?.data, "email": email?.data, "geoPoint": geoPoint?.data, "phone": phone?.data, "sms": sms?.data, "url": url?.data, "wifi": wifi?.data]
+//    }
+//}
 
 extension CGPoint {
     var data: [String: Any?] {
@@ -81,12 +87,12 @@ extension CGPoint {
         return ["x": x1, "y": y1]
     }
 }
-
-extension BarcodeCalendarEvent {
-    var data: [String: Any?] {
-        return ["description": eventDescription, "end": end?.rawValue, "location": location, "organizer": organizer, "start": start?.rawValue, "status": status, "summary": summary]
-    }
-}
+//
+//extension BarcodeCalendarEvent {
+//    var data: [String: Any?] {
+//        return ["description": eventDescription, "end": end?.rawValue, "location": location, "organizer": organizer, "start": start?.rawValue, "status": status, "summary": summary]
+//    }
+//}
 
 extension Date {
     var rawValue: String {
@@ -94,62 +100,62 @@ extension Date {
     }
 }
 
-extension BarcodeContactInfo {
-    var data: [String: Any?] {
-        return ["addresses": addresses?.map({$0.data}), "emails": emails?.map({$0.data}), "name": name?.data, "organization": organization, "phones": phones?.map({$0.data}), "title": jobTitle, "urls": urls]
-    }
-}
+//extension BarcodeContactInfo {
+//    var data: [String: Any?] {
+//        return ["addresses": addresses?.map({$0.data}), "emails": emails?.map({$0.data}), "name": name?.data, "organization": organization, "phones": phones?.map({$0.data}), "title": jobTitle, "urls": urls]
+//    }
+//}
+//
+//extension BarcodeAddress {
+//    var data: [String: Any?] {
+//        return ["addressLines": addressLines, "type": type.rawValue]
+//    }
+//}
+//
+//extension BarcodePersonName {
+//    var data: [String: Any?] {
+//        return ["first": first, "formattedName": formattedName, "last": last, "middle": middle, "prefix": prefix, "pronunciation": pronunciation, "suffix": suffix]
+//    }
+//}
+//
+//extension BarcodeDriverLicense {
+//    var data: [String: Any?] {
+//        return ["addressCity": addressCity, "addressState": addressState, "addressStreet": addressStreet, "addressZip": addressZip, "birthDate": birthDate, "documentType": documentType, "expiryDate": expiryDate, "firstName": firstName, "gender": gender, "issueDate": issuingDate, "issuingCountry": issuingCountry, "lastName": lastName, "licenseNumber": licenseNumber, "middleName": middleName]
+//    }
+//}
 
-extension BarcodeAddress {
-    var data: [String: Any?] {
-        return ["addressLines": addressLines, "type": type.rawValue]
-    }
-}
+//extension BarcodeEmail {
+//    var data: [String: Any?] {
+//        return ["address": address, "body": body, "subject": subject, "type": type.rawValue]
+//    }
+//}
 
-extension BarcodePersonName {
-    var data: [String: Any?] {
-        return ["first": first, "formattedName": formattedName, "last": last, "middle": middle, "prefix": prefix, "pronunciation": pronunciation, "suffix": suffix]
-    }
-}
-
-extension BarcodeDriverLicense {
-    var data: [String: Any?] {
-        return ["addressCity": addressCity, "addressState": addressState, "addressStreet": addressStreet, "addressZip": addressZip, "birthDate": birthDate, "documentType": documentType, "expiryDate": expiryDate, "firstName": firstName, "gender": gender, "issueDate": issuingDate, "issuingCountry": issuingCountry, "lastName": lastName, "licenseNumber": licenseNumber, "middleName": middleName]
-    }
-}
-
-extension BarcodeEmail {
-    var data: [String: Any?] {
-        return ["address": address, "body": body, "subject": subject, "type": type.rawValue]
-    }
-}
-
-extension BarcodeGeoPoint {
-    var data: [String: Any?] {
-        return ["latitude": latitude, "longitude": longitude]
-    }
-}
-
-extension BarcodePhone {
-    var data: [String: Any?] {
-        return ["number": number, "type": type.rawValue]
-    }
-}
-
-extension BarcodeSMS {
-    var data: [String: Any?] {
-        return ["message": message, "phoneNumber": phoneNumber]
-    }
-}
-
-extension BarcodeURLBookmark {
-    var data: [String: Any?] {
-        return ["title": title, "url": url]
-    }
-}
-
-extension BarcodeWifi {
-    var data: [String: Any?] {
-        return ["encryptionType": type.rawValue, "password": password, "ssid": ssid]
-    }
-}
+//extension BarcodeGeoPoint {
+//    var data: [String: Any?] {
+//        return ["latitude": latitude, "longitude": longitude]
+//    }
+//}
+//
+//extension BarcodePhone {
+//    var data: [String: Any?] {
+//        return ["number": number, "type": type.rawValue]
+//    }
+//}
+//
+//extension BarcodeSMS {
+//    var data: [String: Any?] {
+//        return ["message": message, "phoneNumber": phoneNumber]
+//    }
+//}
+//
+//extension BarcodeURLBookmark {
+//    var data: [String: Any?] {
+//        return ["title": title, "url": url]
+//    }
+//}
+//
+//extension BarcodeWifi {
+//    var data: [String: Any?] {
+//        return ["encryptionType": type.rawValue, "password": password, "ssid": ssid]
+//    }
+//}

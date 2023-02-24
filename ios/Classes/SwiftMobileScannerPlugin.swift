@@ -1,7 +1,7 @@
 import AVFoundation
 import Flutter
-import MLKitVision
-import MLKitBarcodeScanning
+//import MLKitVision
+//import MLKitBarcodeScanning
 
 public class SwiftMobileScannerPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterTexture, AVCaptureVideoDataOutputSampleBufferDelegate {
     
@@ -26,7 +26,7 @@ public class SwiftMobileScannerPlugin: NSObject, FlutterPlugin, FlutterStreamHan
     var analyzing: Bool = false
     var position = AVCaptureDevice.Position.back
     
-    var scanner = BarcodeScanner.barcodeScanner()
+//    var scanner = BarcodeScanner.barcodeScanner()
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = SwiftMobileScannerPlugin(registrar.textures())
@@ -99,21 +99,21 @@ public class SwiftMobileScannerPlugin: NSObject, FlutterPlugin, FlutterStreamHan
             }
             analyzing = true
             let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-            let image = VisionImage(image: buffer!.image)
-            image.orientation = imageOrientation(
-              deviceOrientation: UIDevice.current.orientation,
-              defaultOrientation: .portrait
-            )
-
-            scanner.process(image) { [self] barcodes, error in
-                if error == nil && barcodes != nil {
-                    for barcode in barcodes! {
-                        let event: [String: Any?] = ["name": "barcode", "data": barcode.data]
-                        sink?(event)
-                    }
-                }
-                analyzing = false
-            }
+//            let image = VisionImage(image: buffer!.image)
+//            image.orientation = imageOrientation(
+//              deviceOrientation: UIDevice.current.orientation,
+//              defaultOrientation: .portrait
+//            )
+//
+//            scanner.process(image) { [self] barcodes, error in
+//                if error == nil && barcodes != nil {
+//                    for barcode in barcodes! {
+//                        let event: [String: Any?] = ["name": "barcode", "data": barcode.data]
+//                        sink?(event)
+//                    }
+//                }
+//                analyzing = false
+//            }
 //        default: // none
 //            break
 //        }
@@ -175,13 +175,13 @@ public class SwiftMobileScannerPlugin: NSObject, FlutterPlugin, FlutterStreamHan
         
         let formatList: NSMutableArray = []
         for index in formats {
-            formatList.add(BarcodeFormat(rawValue: index))
+//            formatList.add(BarcodeFormat(rawValue: index))
         }
         
-        if (formatList.count != 0) {
-            let barcodeOptions = BarcodeScannerOptions(formats: formatList.firstObject as! BarcodeFormat)
-            scanner = BarcodeScanner.barcodeScanner(options: barcodeOptions)
-        }
+//        if (formatList.count != 0) {
+//            let barcodeOptions = BarcodeScannerOptions(formats: formatList.firstObject as! BarcodeFormat)
+//            scanner = BarcodeScanner.barcodeScanner(options: barcodeOptions)
+//        }
         
         // Set the camera to use
         position = facing == 0 ? AVCaptureDevice.Position.front : .back
@@ -278,29 +278,29 @@ public class SwiftMobileScannerPlugin: NSObject, FlutterPlugin, FlutterStreamHan
             return
         }
         
-        let image = VisionImage(image: uiImage!)
-        image.orientation = imageOrientation(
-          deviceOrientation: UIDevice.current.orientation,
-          defaultOrientation: .portrait
-        )
-        
+//        let image = VisionImage(image: uiImage!)
+//        image.orientation = imageOrientation(
+//          deviceOrientation: UIDevice.current.orientation,
+//          defaultOrientation: .portrait
+//        )
+//
         var barcodeFound = false
-
-        scanner.process(image) { [self] barcodes, error in
-            if error == nil && barcodes != nil {
-                for barcode in barcodes! {
-                    barcodeFound = true
-                    let event: [String: Any?] = ["name": "barcode", "data": barcode.data]
-                    sink?(event)
-                }
-            } else if error != nil {
-                result(FlutterError(code: "MobileScanner",
-                                    message: error?.localizedDescription,
-                                    details: "analyzeImage()"))
-            }
-            analyzing = false
-            result(barcodeFound)
-        }
+//
+//        scanner.process(image) { [self] barcodes, error in
+//            if error == nil && barcodes != nil {
+//                for barcode in barcodes! {
+//                    barcodeFound = true
+//                    let event: [String: Any?] = ["name": "barcode", "data": barcode.data]
+//                    sink?(event)
+//                }
+//            } else if error != nil {
+//                result(FlutterError(code: "MobileScanner",
+//                                    message: error?.localizedDescription,
+//                                    details: "analyzeImage()"))
+//            }
+//            analyzing = false
+//            result(barcodeFound)
+//        }
 
     }
     
